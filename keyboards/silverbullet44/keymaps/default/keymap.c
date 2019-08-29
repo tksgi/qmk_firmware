@@ -190,6 +190,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 50faa8bfc... alt+tab
     case S(ALTAB):
     case ALTAB:
       if (record->event.pressed) {
@@ -218,6 +223,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
     break;
+<<<<<<< HEAD
+=======
+>>>>>>> 81e9406e6... alt+tab
+>>>>>>> 50faa8bfc... alt+tab
   }
   return true;
 }
