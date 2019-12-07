@@ -181,6 +181,31 @@
 		#define GFX_OS_INIT_NO_WARNING	FALSE
 	#endif
  	/**
+ 	 * @brief	Call uGFXMain() after all initialisation
+ 	 * @details	Defaults to FALSE
+ 	 * @note	uGFXMain() is a function defined by the user in their project
+	 * 			that contains the application main code. This is not expected to return
+	 * 			and thus gfxInit() will also never return. This is required for some
+	 *			operating systems whose main thread never returns after starting the
+	 * 			scheduler.<br>
+	 *			Its prototype is:<br>
+	 *				void uGFXMain(void);<br>
+ 	 */
+	#ifndef GFX_OS_CALL_UGFXMAIN
+		#define GFX_OS_CALL_UGFXMAIN		FALSE
+	#endif
+ 	/**
+ 	 * @brief	When uGFXMain() is started as a thread, what stack size should be used
+ 	 * @details	Defaults to 0
+ 	 * @note	uGFXMain() contains the application main code. Some operating systems
+	 * 			will start this as a thread. eg FreeRTOS. When it is started as a thread
+	 * 			this defines how many bytes should be used for the thread stack.
+	 * @note	0 means to use the operating systems default stack size.
+ 	 */
+	#ifndef GFX_OS_UGFXMAIN_STACKSIZE
+		#define GFX_OS_UGFXMAIN_STACKSIZE	0
+	#endif
+ 	/**
  	 * @brief	Should uGFX stuff be added to the FreeRTOS+Tracer
  	 * @details	Defaults to FALSE
  	 */

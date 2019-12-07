@@ -1,5 +1,5 @@
 /*
-    ChibiOS - Copyright (C) 2006..2016 Giovanni Di Sirio
+    ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -285,6 +285,7 @@
 #define STM32_MCO2SEL_PLLI2S    (1 << 30)   /**< PLLI2S clock on MCO2 pin.  */
 #define STM32_MCO2SEL_HSE       (2 << 30)   /**< HSE clock on MCO2 pin.     */
 #define STM32_MCO2SEL_PLL       (3 << 30)   /**< PLL clock on MCO2 pin.     */
+/** @} */
 
 /**
  * @name    RCC_PLLI2SCFGR register bits definitions
@@ -411,9 +412,13 @@
 #define STM32_CK48MSEL_PLL      (0 << 27)   /**< PLL48CLK source is PLL.    */
 #define STM32_CK48MSEL_PLLSAI   (1 << 27)   /**< PLL48CLK source is PLLSAI. */
 
-#define STM32_SDMMCSEL_MASK     (1 << 28)   /**< SDMMCSEL mask.             */
-#define STM32_SDMMCSEL_PLL48CLK (0 << 28)   /**< SDMMC source is PLL48CLK.  */
-#define STM32_SDMMCSEL_SYSCLK   (1 << 28)   /**< SDMMC source is SYSCLK.    */
+#define STM32_SDMMC1SEL_MASK     (1 << 28)  /**< SDMMC1SEL mask.            */
+#define STM32_SDMMC1SEL_PLL48CLK (0 << 28)  /**< SDMMC1 source is PLL48CLK. */
+#define STM32_SDMMC1SEL_SYSCLK   (1 << 28)  /**< SDMMC1 source is SYSCLK.   */
+
+#define STM32_SDMMC2SEL_MASK     (1 << 29)  /**< SDMMC2SEL mask.            */
+#define STM32_SDMMC2SEL_PLL48CLK (0 << 29)  /**< SDMMC2 source is PLL48CLK. */
+#define STM32_SDMMC2SEL_SYSCLK   (1 << 29)  /**< SDMMC2 source is SYSCLK.   */
 /** @} */
 
 /**
@@ -847,10 +852,17 @@
 #endif
 
 /**
- * @brief   SDMMC clock source.
+ * @brief   SDMMC1 clock source.
  */
-#if !defined(STM32_SDMMCSEL) || defined(__DOXYGEN__)
-#define STM32_SDMMCSEL                      STM32_SDMMCSEL_PLL48CLK
+#if !defined(STM32_SDMMC1SEL) || defined(__DOXYGEN__)
+#define STM32_SDMMC1SEL                     STM32_SDMMC1SEL_PLL48CLK
+#endif
+
+/**
+ * @brief   SDMMC2 clock source.
+ */
+#if !defined(STM32_SDMMC2SEL) || defined(__DOXYGEN__)
+#define STM32_SDMMC2SEL                     STM32_SDMMC2SEL_PLL48CLK
 #endif
 
 /**
@@ -1960,14 +1972,25 @@
 #endif
 
 /**
- * @brief   SDMMC frequency.
+ * @brief   SDMMC1 frequency.
  */
-#if (STM32_SDMMCSEL == STM32_SDMMCSEL_PLL48CLK) || defined(__DOXYGEN__)
-#define STM32_SDMMCCLK               STM32_PLL48CLK
-#elif STM32_SDMMCSEL == STM32_SDMMCSEL_SYSCLK
-#define STM32_SDMMCCLK               STM32_SYSCLK
+#if (STM32_SDMMC1SEL == STM32_SDMMC1SEL_PLL48CLK) || defined(__DOXYGEN__)
+#define STM32_SDMMC1CLK              STM32_PLL48CLK
+#elif STM32_SDMMC1SEL == STM32_SDMMCSEL_SYSCLK
+#define STM32_SDMMC1CLK              STM32_SYSCLK
 #else
-#error "invalid source selected for SDMMC clock"
+#error "invalid source selected for SDMMC1 clock"
+#endif
+
+/**
+ * @brief   SDMMC2 frequency.
+ */
+#if (STM32_SDMMC2SEL == STM32_SDMMC1SEL_PLL48CLK) || defined(__DOXYGEN__)
+#define STM32_SDMMC2CLK              STM32_PLL48CLK
+#elif STM32_SDMMC2SEL == STM32_SDMMCSEL_SYSCLK
+#define STM32_SDMMC2CLK              STM32_SYSCLK
+#else
+#error "invalid source selected for SDMMC2 clock"
 #endif
 
 /**
@@ -2036,7 +2059,9 @@
 
 /* Various helpers.*/
 #include "nvic.h"
-#include "mpu.h"
+#include "cache.h"
+#include "mpu_v7m.h"
+#include "stm32_isr.h"
 #include "stm32_dma.h"
 #include "stm32_rcc.h"
 

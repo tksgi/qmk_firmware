@@ -38,4 +38,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
    //#define RGBLIGHT_EFFECT_ALTERNATING
 #endif
 
+#define DRIVER_LED_TOTAL 64
+#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 140
+#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#define RGB_MATRIX_KEYPRESSES
+
 #endif /* CONFIG_USER_H */

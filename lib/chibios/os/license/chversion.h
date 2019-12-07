@@ -1,5 +1,5 @@
 /*
-    ChibiOS - Copyright (C) 2006..2016 Giovanni Di Sirio.
+    ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio.
 
     This file is part of ChibiOS.
 
@@ -40,7 +40,7 @@
 /**
  * @brief   Stable release flag.
  */
-#define CH_VERSION_STABLE       1
+#define CH_VERSION_STABLE       0
 
 /**
  * @name    ChibiOS version identification
@@ -49,27 +49,27 @@
 /**
  * @brief   ChibiOS version string.
  */
-#define CH_VERSION              "17.6.3"
+#define CH_VERSION              "0.0.0"
 
 /**
  * @brief   ChibiOS version release year.
  */
-#define CH_VERSION_YEAR         17
+#define CH_VERSION_YEAR         0
 
 /**
  * @brief   ChibiOS version release month.
  */
-#define CH_VERSION_MONTH        6
+#define CH_VERSION_MONTH        0
 
 /**
  * @brief   ChibiOS version patch number.
  */
-#define CH_VERSION_PATCH        3
+#define CH_VERSION_PATCH        0
 
 /**
  * @brief   ChibiOS version nickname.
  */
-#define CH_VERSION_NICKNAME     "Vivace"
+#define CH_VERSION_NICKNAME     "Lasagna"
 /** @} */
 
 /*===========================================================================*/

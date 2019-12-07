@@ -315,7 +315,7 @@
 
 struct GDisplay {
 	struct GDriver				d;					// This must be the first element
-		#define gvmt(g)		((const GDISPVMT * const)((g)->d.vmt))	// For ease of access to the vmt member
+		#define gvmt(g)		((const GDISPVMT const *)((g)->d.vmt))	// For ease of access to the vmt member
 
 	struct GDISPControl {
 		coord_t					Width;
@@ -367,6 +367,10 @@ struct GDisplay {
 			color_t		bgcolor;
 			coord_t		clipx0, clipy0;
 			coord_t		clipx1, clipy1;
+			#if GDISP_NEED_TEXT_WORDWRAP
+				coord_t		wrapx, wrapy;
+				justify_t	lrj;
+			#endif
 		} t;
 	#endif
 	#if GDISP_LINEBUF_SIZE != 0 && ((GDISP_NEED_SCROLL && !GDISP_HARDWARE_SCROLL) || (!GDISP_HARDWARE_STREAM_WRITE && GDISP_HARDWARE_BITFILLS))
@@ -728,7 +732,7 @@ typedef struct GDISPVMT {
 	#endif
 
 	// Build the VMT
-	const GDISPVMT GDISP_DRIVER_VMT[1] = {{
+	const GDISPVMT const GDISP_DRIVER_VMT[1] = {{
 		{ GDRIVER_TYPE_DISPLAY, 0, sizeof(GDisplay), _gdispInitDriver, _gdispPostInitDriver, _gdispDeInitDriver },
 		gdisp_lld_init,
 		#if GDISP_HARDWARE_DEINIT

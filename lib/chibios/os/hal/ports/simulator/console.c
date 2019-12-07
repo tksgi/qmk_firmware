@@ -1,5 +1,5 @@
 /*
-    ChibiOS - Copyright (C) 2006..2016 Giovanni Di Sirio
+    ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -113,9 +113,19 @@ static size_t _readt(void *ip, uint8_t *bp, size_t n, systime_t time) {
   return fread(bp, 1, n, stdin);
 }
 
+static msg_t _ctl(void *ip, unsigned int operation, void *arg) {
+
+  (void)ip;
+  (void)operation;
+  (void)arg;
+
+  return MSG_OK;
+}
+
 static const struct BaseChannelVMT vmt = {
   _write, _read, _put, _get,
-  _putt, _gett, _writet, _readt
+  _putt, _gett, _writet, _readt,
+  _ctl
 };
 
 /*===========================================================================*/

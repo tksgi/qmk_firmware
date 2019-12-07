@@ -1,5 +1,5 @@
 /*
-    ChibiOS - Copyright (C) 2006..2016 Giovanni Di Sirio
+    ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -120,6 +120,9 @@ bssloop:
                  * Late initialization.
                  */
 #if !defined(THUMB_NO_INTERWORKING)
+#if defined(CH_CFG_USE_MMU)
+                bl      __core_init
+#endif
                 bl      __late_init
 #else /* defined(THUMB_NO_INTERWORKING) */
                 add     r0, pc, #1

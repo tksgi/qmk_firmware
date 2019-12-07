@@ -74,18 +74,6 @@ endif
 # $(eval $(call HELIX_CUSTOMISE_MSG))
 # $(info )
 
-ifeq ($(strip $(LED_BACK_ENABLE)), yes)
-  RGBLIGHT_ENABLE = yes
-  OPT_DEFS += -DRGBLED_BACK
-  ifeq ($(strip $(LED_UNDERGLOW_ENABLE)), yes)
-    $(eval $(call HELIX_CUSTOMISE_MSG))
-    $(error LED_BACK_ENABLE and LED_UNDERGLOW_ENABLE both 'yes')
-  endif
-else ifeq ($(strip $(LED_UNDERGLOW_ENABLE)), yes)
-  RGBLIGHT_ENABLE = yes
-else
-  RGBLIGHT_ENABLE = no
-endif
 
 ifeq ($(strip $(IOS_DEVICE_ENABLE)), yes)
     OPT_DEFS += -DIOS_DEVICE_ENABLE

@@ -329,9 +329,9 @@ void iota_gfx_task(void) {
     force_dirty = false;
   }
 
-  if (timer_elapsed(last_flush) > ScreenOffInterval) {
-    iota_gfx_off();
-  }
+//  if (timer_elapsed(last_flush) > ScreenOffInterval) {
+//    iota_gfx_off();
+//  }
 }
 
 bool process_record_gfx(uint16_t keycode, keyrecord_t *record) {

@@ -2,6 +2,36 @@
 *** Releases                                                              ***
 *****************************************************************************
 
+*** Changes after 2.7 ***
+FEATURE:	Added support for 128x32 SSD1306 based displays
+FIX:		Fixed recursion bug in console history
+FIX:		Multithreading issue with slow window redraws and large images
+FIX:		Ensure valid thread stack sizes on platforms where it matters
+FEATURE:	Added support for a GFILE user provided file system
+FEATURE:	Added gwinListItemSetText() to replace text in a GWIN list item
+FEATURE:	Added GDISP_IMAGE_BMP_BLIT_BUFFER_SIZE configuration option
+FEATURE:	Added GDISP_IMAGE_PNG_BLIT_BUFFER_SIZE configuration option
+FEATURE:	Added GDISP_IMAGE_PNG_FILE_BUFFER_SIZE configuration option
+FEATURE:	Added GDISP_IMAGE_PNG_Z_BUFFER_SIZE configuration option
+FEATURE:	Added GDISP_IMAGE_GIF_BLIT_BUFFER_SIZE configuration option
+FIX:		Fixed extra dots when drawing anti-aliased fonts with wordwrap
+FEATURE:	Increase non-UTF8 font support to 0 to 255 rather than just the true ascii set
+FEATURE:	Added Fb24bpp driver for RGB888 and BGR888 packed framebuffer displays
+FEATURE:	Added UC8173 driver
+FEATURE:	Added complete support for Altera Terasic MAX10 NEEK board
+FEATURE:	Significantly improved the FreeRTOS port
+FEATURE:	Added support for operating system initialisation in FreeRTOS
+FEATURE:	Added GFX_OS_CALL_UGFXMAIN configuration option to allow uGFXMain() to be automatically called
+FEATURE:	Added GFX_OS_UGFXMAIN_STACKSIZE configuration option to control uGFXMain() stack size
+FIX:		Fixed where a font with more than 255 glyphs could fail to display some glyphs
+FIX:		Fixed where a font with a large x baseline could be incorrectly clipped or word-wrapped
+IMPROVE:	Significantly decrease the stack usage required for word-wrapping
+FEATURE:	Added justifyTop, justifyMiddle & justifyBottom text justification to GDISP
+FEATURE:	Added justifyWordWrap, justifyNoWordWrap text justification to GDISP (requires GDISP_NEED_TEXT_WORDWRAP)
+FEATURE:	Added justifyPad, justifyNoPad text justification to GDISP
+FEATURE:	Added GDISP_NEED_TEXT_BOXPADLR and GDISP_NEED_TEXT_BOXPADTB configuration options
+FIX:		Fixed an issue on FreeRTOS where thread stacks were being created too large
+
 
 *** Release 2.7 ***
 FEATURE:	Added EXC7200 driver

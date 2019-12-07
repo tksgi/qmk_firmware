@@ -34,9 +34,10 @@ OLED_ENABLE = yes           # OLED_ENABLE
 LOCAL_GLCDFONT = no         # use each keymaps "helixfont.h" insted of "common/glcdfont.c"
 LED_BACK_ENABLE = yes       # LED backlight (Enable WS2812 RGB underlight.)
 LED_UNDERGLOW_ENABLE = no   # LED underglow (Enable WS2812 RGB underlight.)
-LED_ANIMATIONS = yes        # LED animations
+LED_ANIMATIONS = no        # LED animations
 IOS_DEVICE_ENABLE = no      # connect to IOS device (iPad,iPhone)
-Link_Time_Optimization = no # if firmware size over limit, try this option
+Link_Time_Optimization = yes # if firmware size over limit, try this option
+RGB_MATRIX_ENABLE = WS2812
 
 ####  LED_BACK_ENABLE and LED_UNDERGLOW_ENABLE.
 ####    Do not enable these with audio at the same time.
@@ -82,18 +83,6 @@ ifneq ($(strip $(HELIX_ROWS)), 4)
 endif
 OPT_DEFS += -DHELIX_ROWS=$(strip $(HELIX_ROWS))
 
-ifeq ($(strip $(LED_BACK_ENABLE)), yes)
-  RGBLIGHT_ENABLE = yes
-  OPT_DEFS += -DRGBLED_BACK
-  ifeq ($(strip $(LED_UNDERGLOW_ENABLE)), yes)
-    $(eval $(call HELIX_CUSTOMISE_MSG))
-    $(error LED_BACK_ENABLE and LED_UNDERGLOW_ENABLE both 'yes')
-  endif
-else ifeq ($(strip $(LED_UNDERGLOW_ENABLE)), yes)
-  RGBLIGHT_ENABLE = yes
-else
-  RGBLIGHT_ENABLE = no
-endif
 
 ifeq ($(strip $(IOS_DEVICE_ENABLE)), yes)
     OPT_DEFS += -DIOS_DEVICE_ENABLE
@@ -120,6 +109,11 @@ SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 
 ifndef QUANTUM_DIR
 	include ../../../../Makefile
+endif
+
+RGB_MATRIX_SPLIT_RIGHT = no  # if no, order LEDs for left hand, if yes, order LEDs for right hand
+ifeq ($(strip $(RGB_MATRIX_SPLIT_RIGHT)), yes)
+    OPT_DEFS += -DRGB_MATRIX_SPLIT_RIGHT
 endif
 
 # Uncomment these for debugging
