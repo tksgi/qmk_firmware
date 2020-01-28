@@ -6,6 +6,7 @@ SRC += ssd1306.c
 #MCU = at90usb1287
 MCU = atmega32u4
 
+<<<<<<< HEAD:keyboards/benzene/rules.mk
 # Processor frequency.
 #     This will define a symbol, F_CPU, in all source code files equal to the
 #     processor frequency in Hz. You can then use this symbol in your source code to
@@ -46,11 +47,23 @@ BOOTLOADER = caterina
 
 # Interrupt driven control endpoint task(+60)
 OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
+=======
+# Bootloader selection
+#   Teensy       halfkay
+#   Pro Micro    caterina
+#   Atmel DFU    atmel-dfu
+#   LUFA DFU     lufa-dfu
+#   QMK DFU      qmk-dfu
+#   ATmega32A    bootloadHID
+#   ATmega328P   USBasp
+BOOTLOADER = qmk-dfu
+>>>>>>> a539bd63fead3d35e7d9095a4e5b636e358cbe35:keyboards/maartenwut/plain60/rules.mk
 
 # Build Options
 #   change to "no" to disable the options, or define them in the Makefile in
 #   the appropriate keymap folder that will get included automatically
 #
+<<<<<<< HEAD:keyboards/benzene/rules.mk
 BOOTMAGIC_ENABLE = no       # Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE = no       # Mouse keys(+4700)
 EXTRAKEY_ENABLE = no       # Audio control and System control(+450)
@@ -69,5 +82,19 @@ USE_I2C = yes
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 
 CUSTOM_MATRIX = yes
+=======
+BOOTMAGIC_ENABLE = lite	# Virtual DIP switch configuration
+MOUSEKEY_ENABLE = no	# Mouse keys
+EXTRAKEY_ENABLE = yes	# Audio control and System control
+CONSOLE_ENABLE = no	# Console for debug
+COMMAND_ENABLE = no    # Commands for debug and configuration
+NKRO_ENABLE = no		# USB Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
+RGBLIGHT_ENABLE = no   # Enable keyboard underlight functionality
+BACKLIGHT_ENABLE = no  # Enable keyboard backlight functionality
+MIDI_ENABLE = no 		# MIDI controls
+AUDIO_ENABLE = no
+UNICODE_ENABLE = no 		# Unicode
+BLUETOOTH_ENABLE = no # Enable Bluetooth with the Adafruit EZ-Key HID
+>>>>>>> a539bd63fead3d35e7d9095a4e5b636e358cbe35:keyboards/maartenwut/plain60/rules.mk
 
 DEFAULT_FOLDER = benzene/rev1
