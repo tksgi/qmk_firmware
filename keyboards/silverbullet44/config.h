@@ -115,8 +115,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define B6_AUDIO
   #define STARTUP_SONG SONG(STARTUP_SOUND)
   #define AUDIO_CLICKY
-  #define AUDIO_CLUCKY_FREQ_MAX 220.0f
-  #define AUDIO_CLUCKY_FREQ_MIN 1760.0f
   #define AUDIO_CLICKY_FREQ_RANDOMNESS 1.0f
 #endif
 
@@ -234,9 +232,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* disable action features */
 //#define NO_ACTION_LAYER
 //#define NO_ACTION_TAPPING
-#define NO_ACTION_ONESHOT
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
+//#define NO_ACTION_ONESHOT
+#ifndef LINK_TIME_OPTIMIZATION_ENABLE
+#    define NO_ACTION_MACRO
+#    define NO_ACTION_FUNCTION
+#endif
 
 /*
  * MIDI options
